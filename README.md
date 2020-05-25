@@ -37,7 +37,7 @@ description: "このカスタムスキルは日本語OCRからの出力からス
             "recordId": "r1",
             "data":
             {
-            	"name": "Green tea is synonymous with Japanese tea. It is the most... い れ た て の お 茶"
+            	"mergedText": "Green tea is synonymous with Japanese tea. It is the most... い れ た て の お 茶"
             }
         }
     ]
@@ -75,14 +75,14 @@ description: "このカスタムスキルは日本語OCRからの出力からス
     "context": "/document",
     "inputs": [
         {
-            "name": "name",
-            "source": "/document/normalized_images/*/text"
+          "name": "mergedText",
+          "source": "/document/merged_text"
         }
     ],
     "outputs": [
         {
-            "name": "ocrtext",
-            "targetName": "ocrtext"
+          "name": "ocrtext",
+          "targetName": "ocrtext"
         }
     ]
 }
