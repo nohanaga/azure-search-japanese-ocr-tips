@@ -34,12 +34,18 @@ namespace AzureCognitiveSearch.PowerSkills.Template.JapaneseOCR
             WebApiSkillResponse response = WebApiSkillHelpers.ProcessRequestRecords(skillName, requestRecords,
                 (inRecord, outRecord) => {
 
-                    var name = inRecord.Data["name"] as string;
+                    var mergedText = inRecord.Data["mergedText"] as string;
+                    outRecord.Data["ocrtext"] = "";
 
-                    // 正規表現で文字列中の空白を全削除
-                    var newContent = Regex.Replace(name, @"\s", "");
+                    if (string.IsNullOrEmpty(mergedText))
+                    {
+                        return outRecord;
+                    }
 
+                    // 正規表現で全角文字+半白スペースの場合、半角スペースのみを除去
+                    var newContent = Regex.Replace(mergedText, @"([^\x01-\x7E])\x20", "$1");
                     outRecord.Data["ocrtext"] = newContent;
+
                     return outRecord;
                 });
 
