@@ -14,19 +14,19 @@ description: "このカスタムスキルは日本語OCRからの出力からス
 
 このカスタムスキルは Azure Cognitive Search 日本語OCRからの出力からスペースを除去します。
 
-## Requirements
+## 必要条件
 
-This skill has no additional requirements than the ones described in [the root `README.md` file](../../README.md).
+このスキルには、[README.md`ファイル]（README.md）で説明されているもの以外の要件はありません。
 
-## Settings
+## 設定
 
-This function doesn't require any application settings.
+この機能は、アプリケーション設定を必要としません。
 
-## Deployment
+## デプロイ
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnohanaga%2Fazure-search-japanese-ocr-tips%2Fmaster%2Fazuredeploy.json)
 
-## hello-world
+## remove-spaces
 
 ### Sample Input:
 
@@ -61,28 +61,28 @@ This function doesn't require any application settings.
 }
 ```
 
-## Sample Skillset Integration
+## スキルセット統合の例
 
-In order to use this skill in a cognitive search pipeline, you'll need to add a skill definition to your skillset.
-Here's a sample skill definition for this example (inputs and outputs should be updated to reflect your particular scenario and skillset environment):
+このスキルを Azure Cognitive Search パイプラインで使用するには、スキル定義をスキルセットに追加する必要があります。
+この例のスキル定義の例を次に示します（特定のシナリオとスキルセット環境を反映するように入力と出力を更新する必要があります）。
 
 ```json
 {
     "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
-    "description": "Hello world",
-    "uri": "[AzureFunctionEndpointUrl]/api/hello-world?code=[AzureFunctionDefaultHostKey]",
+    "description": "remove-spaces",
+    "uri": "[AzureFunctionEndpointUrl]/api/remove-spaces?code=[AzureFunctionDefaultHostKey]",
     "batchSize": 1,
-    "context": "/document/merged_content/people/*",
+    "context": "/document",
     "inputs": [
         {
             "name": "name",
-            "source": "/document/merged_content/people/*"
+            "source": "/document/normalized_images/*/text"
         }
     ],
     "outputs": [
         {
-            "name": "greeting",
-            "targetName": "greeting"
+            "name": "ocrtext",
+            "targetName": "ocrtext"
         }
     ]
 }
