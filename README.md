@@ -5,14 +5,14 @@ languages:
 products:
 - azure
 - azure-search
-azureDeploy: https://raw.githubusercontent.com/Azure-Samples/azure-search-power-skills/master/Template/HelloWorld/azuredeploy.json
-name: "Hello World sample skill for cognitive search"
-description: "This Hello World custom skills can be used as a template to create your own skills."
+azureDeploy: https://raw.githubusercontent.com/nohanaga/azure-search-japanese-ocr-tips/master/azuredeploy.json
+name: "Azure Cognitive Search 日本語OCR用スペース除去"
+description: "このカスタムスキルは日本語OCRからの出力からスペースを除去します。"
 ---
 
-# Hello World (template)
+# Azure Cognitive Search 日本語OCR用スペース除去カスタムスキル
 
-This "Hello World" custom skills can be used as a template to create your own skills.
+このカスタムスキルは Azure Cognitive Search 日本語OCRからの出力からスペースを除去します。
 
 ## Requirements
 
@@ -24,7 +24,7 @@ This function doesn't require any application settings.
 
 ## Deployment
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fazure-search-power-skills%2Fmaster%2FTemplate%2FHelloWorld%2Fazuredeploy.json)
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fnohanaga%2Fazure-search-japanese-ocr-tips%2Fmaster%2Fazuredeploy.json)
 
 ## hello-world
 
@@ -37,7 +37,7 @@ This function doesn't require any application settings.
             "recordId": "r1",
             "data":
             {
-            	"name": "World"
+            	"name": "い れ た て の お 茶"
             }
         }
     ]
@@ -52,7 +52,7 @@ This function doesn't require any application settings.
         {
             "recordId": "r1",
             "data": {
-                "greeting": "Hello, World"
+                "ocrtext": "いれたてのお茶"
             },
             "errors": [],
             "warnings": []
