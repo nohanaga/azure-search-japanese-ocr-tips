@@ -37,7 +37,7 @@ description: "このカスタムスキルは日本語OCRからの出力からス
             "recordId": "r1",
             "data":
             {
-            	"mergedText": "Green tea is synonymous with Japanese tea. It is the most... い れ た て の お 茶"
+            	"text": "Green tea is synonymous with Japanese tea. It is the most... い れ た て の お 茶"
             }
         }
     ]
@@ -72,11 +72,11 @@ description: "このカスタムスキルは日本語OCRからの出力からス
     "description": "remove-spaces",
     "uri": "[AzureFunctionEndpointUrl]/api/remove-spaces?code=[AzureFunctionDefaultHostKey]",
     "batchSize": 1,
-    "context": "/document",
+    "context": "/document/normalized_images/*",
     "inputs": [
         {
-          "name": "mergedText",
-          "source": "/document/merged_text"
+          "name": "text",
+          "source": "/document/normalized_images/*/text"
         }
     ],
     "outputs": [
